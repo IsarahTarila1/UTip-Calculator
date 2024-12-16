@@ -60,6 +60,33 @@ class UTip extends StatelessWidget {
                   ],
                 )),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(
+                  color: theme.colorScheme.inversePrimary,
+                  width: 2,
+                )
+              ),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.attach_money),
+                      labelText: 'Bill Payment'
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (String value){
+                      print("Value $value");
+                    }
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
