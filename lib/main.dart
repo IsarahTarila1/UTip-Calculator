@@ -26,6 +26,13 @@ class UTip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    //Add Style
+    final style = theme.textTheme.titleMedium!.copyWith(
+        color: theme.colorScheme.onPrimary,
+        fontWeight: FontWeight.bold
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('UTip'),
@@ -43,8 +50,13 @@ class UTip extends StatelessWidget {
                 child: Column(
                   children: [
                     Text("Total Per Person",
-                    style: Theme.of(context).textTheme.displayMedium,),
-                    Text("\$23.5"),
+                    style: style,
+                    ),
+                    Text("\$23.5",
+                    style: style.copyWith(
+                      color: theme.colorScheme.onPrimary,
+                      fontSize: theme.textTheme.displaySmall?.fontSize
+                    ),),
                   ],
                 )),
           ),
