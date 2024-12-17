@@ -82,11 +82,30 @@ class UTip extends StatelessWidget {
                     onChanged: (String value){
                       print("Value $value");
                     }
+                  ), //TextField
+                  //Split Bill Area
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Split",
+                      style: theme.textTheme.titleMedium,
+                      ),
+                         Row(
+                        children: [
+                          IconButton(
+                              onPressed: () =>{}, icon: const Icon(Icons.remove)),
+                          Text("3",
+                          style: theme.textTheme.titleMedium,),
+                          IconButton(
+                              onPressed: () => {}, icon: const Icon(Icons.add))
+                        ],
+                      ),
+                    ],
                   )
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
