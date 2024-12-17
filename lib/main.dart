@@ -20,10 +20,31 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+class UTip extends StatefulWidget {
 
-class UTip extends StatelessWidget {
   const UTip({super.key});
 
+  @override
+  State<UTip> createState() => _UTipState();
+}
+
+class _UTipState extends State<UTip> {
+
+   int _personCount = 1;
+
+  //Methods
+  void increment (){
+    setState(() {
+      _personCount = _personCount + 1;
+    });
+  }
+  void decrement (){
+    setState(() {
+      if(_personCount>0){
+        _personCount--;
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -93,11 +114,11 @@ class UTip extends StatelessWidget {
                          Row(
                         children: [
                           IconButton(
-                              onPressed: () =>{}, icon: const Icon(Icons.remove)),
-                          Text("3",
+                              onPressed: decrement, icon: const Icon(Icons.remove)),
+                          Text("$_personCount",
                           style: theme.textTheme.titleMedium,),
                           IconButton(
-                              onPressed: () => {}, icon: const Icon(Icons.add))
+                              onPressed: increment, icon: const Icon(Icons.add))
                         ],
                       ),
                     ],
