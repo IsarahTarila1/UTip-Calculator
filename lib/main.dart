@@ -33,7 +33,8 @@ class UTip extends StatefulWidget {
 
 class _UTipState extends State<UTip> {
 
-   int _personCount = 1;
+  double tipPercentage = 0.0;
+  int _personCount = 1;
 
   //Methods
   void increment (){
@@ -43,7 +44,7 @@ class _UTipState extends State<UTip> {
   }
   void decrement (){
     setState(() {
-      if(_personCount>0){
+      if(_personCount>1){
         _personCount--;
       }
     });
@@ -56,7 +57,6 @@ class _UTipState extends State<UTip> {
         color: theme.colorScheme.onPrimary,
         fontWeight: FontWeight.bold
     );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('UTip'),
@@ -119,9 +119,35 @@ class _UTipState extends State<UTip> {
                         theme: theme,
                         onDecrement: decrement,
                         onIncrement: increment,
-                      ),
+                      )
                     ],
-                  )
+                  ),
+                  // ==== Tip Section ====
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Tip',
+                        style: theme.textTheme.titleMedium,),
+                      Text("\$20",
+                        style: theme.textTheme.titleMedium,)
+                    ],
+                  ),
+                  Text('${(tipPercentage*100).round()}%'),
+
+                  // == Tip Slider ==
+                  Slider(
+                      value: tipPercentage,
+                      onChanged: (value){
+                    setState(() {
+                      print(value*100);
+                      tipPercentage = value;
+                    });
+                  },
+                    min: 0,
+                    max: 0.5,
+                    divisions: 5,
+                    label: '${(tipPercentage*100).round()}%',
+                  ),
                 ],
               ),
             ),
