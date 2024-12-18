@@ -37,6 +37,14 @@ class _UTipState extends State<UTip> {
 
   double tipPercentage = 0.0;
   int _personCount = 1;
+  double _billTotal = 0.0;
+
+  double totalPerPerson(){
+    return ((_billTotal*tipPercentage) + (_billTotal))/_personCount;
+  }
+  double totalTip(){
+    return (_billTotal*tipPercentage);
+  }
 
   //Methods
   void increment (){
@@ -54,6 +62,8 @@ class _UTipState extends State<UTip> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    double total = totalPerPerson();
+    double totalT = totalTip();
     //Add Style
     final style = theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.onPrimary,
@@ -78,7 +88,7 @@ class _UTipState extends State<UTip> {
                     Text("Total Per Person",
                     style: style,
                     ),
-                    Text("\$23.5",
+                    Text("$total",
                     style: style.copyWith(
                       color: theme.colorScheme.onPrimary,
                       fontSize: theme.textTheme.displaySmall?.fontSize
@@ -100,9 +110,11 @@ class _UTipState extends State<UTip> {
               child: Column(
                 children: [
                   BillAmountField(
-                    billAmount: "100",
+                    billAmount: _billTotal.toString(),
                     onChanged: (value){
-                      print("Amount: $value");
+                      setState(() {
+                        _billTotal = double.parse(value);
+                      });
                     }
                   ), //TextField
                   //Split Bill Area
@@ -126,7 +138,7 @@ class _UTipState extends State<UTip> {
                     children: [
                       Text('Tip',
                         style: theme.textTheme.titleMedium,),
-                      Text("\$20",
+                      Text("$totalT",
                         style: theme.textTheme.titleMedium,)
                     ],
                   ),
